@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>PPT</title>
+
+<script src="jquery-1.12.4.min.js"></script>
+<script src="jquery.zoomooz.min.js"></script>
+</head>
+
+<style>
+	html, body {
+		margin: 0px;
+	}
+
+	.wrapper {
+		position: relative;
+		height: 100vh;
+		width: 100%;
+		/*background: url('graph.svg');*/
+	}
+	.zoom-block {
+		position: absolute;
+		height: 30%;
+		width: 35%;
+		/*background: rgba(25, 15, 45, 0.5);*/
+	}
+	.ayy {
+		/*height: 500px;*/
+		width: 100%;
+		position: absolute;
+		/*background: #ccc;*/
+	}
+	.legend {
+		position: fixed;
+		bottom: 0px;
+		right: 0px;
+		height: 261px;
+		width: 388px;
+		cursor: pointer;
+		/*display: none;*/
+		background: #FFF;
+		transition: all 0.3s ease;
+	}
+	.hide-legend-button {
+		background: url(hide-legend-button.png);
+		display: block;
+		position: fixed;
+		bottom: 0px;
+		right: 0px;
+		height: 78px;
+		width: 78px;
+		z-index: 2;
+		background-size: 100%;
+		transition: all 0.3s ease;
+	}
+	.hide-legend-button:hover {
+		height: 81px;
+		width: 81px;
+	}
+	.hidden-legend-button {
+		bottom: 261px;
+		opacity: 0;
+	}
+	.hidden-legend {
+		bottom: -261px;
+		opacity: 0.3;
+	}
+	.top-left {
+		left: 1%;
+		top: 17%;
+	}
+	.top-right {
+		top: 15%;
+		right: 1%;
+	}
+	.top-middle {
+		left: 36%;
+		top: 26%;
+	}
+	.bottom-middle {
+		left: 36%;
+		top: 50%;
+	}
+	.bottom-left {
+		top: 52%;
+		left: 1%;
+	}
+	.bottom-right {
+		top: 54%;
+		right: 1%;
+	}
+	.graph-image {
+		position: absolute;
+		left: 0px;
+		right: 0px;
+		top: 0px;
+		bottom: 0px;
+		margin: auto;
+		width: 100%;
+	}
+
+	.zoomContainer {
+		padding: 0px;
+		margin: 0px;
+	}
+
+
+</style>
+
+<body>
+
+
+	<div class="zoomViewport">
+		<div class="zoomContainer">
+
+			<div class="wrapper">
+				<img class="graph-image" src="graph.svg">
+				<div data-closeclick="true" class="zoom-block top-left zoomTarget"></div>
+				<div data-closeclick="true" class="zoom-block top-right zoomTarget"></div>
+				<div data-closeclick="true" class="zoom-block top-middle zoomTarget"></div>
+				<div data-closeclick="true" class="zoom-block bottom-middle zoomTarget"></div>
+				<div data-closeclick="true" class="zoom-block bottom-left zoomTarget"></div>
+				<div data-closeclick="true" class="zoom-block bottom-right zoomTarget"></div>
+
+			</div>
+		
+		</div>
+
+	</div>
+
+	<div class="ayy">
+		<div class="hide-legend-button"></div>
+		<img class="legend legend-image hidden-legend" src="legend.png">
+		<!-- <div class="legend">Legend here</div> -->
+	</div>
+	
+</body>
+
+<script type="text/javascript">
+	
+	document.addEventListener('DOMContentLoaded', function(e) {
+
+		var legendButton = document.querySelector('.hide-legend-button');
+		var legend = document.querySelector('.legend');
+
+		legendButton.addEventListener('click', function(e) {
+			this.classList.toggle('hidden-legend-button');
+			legend.classList.toggle('hidden-legend');
+		});
+
+		legend.addEventListener('click', function(e) {
+			this.classList.toggle('hidden-legend');
+			legendButton.classList.toggle('hidden-legend-button');
+		});
+
+	});
+
+</script>
+</html>
